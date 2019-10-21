@@ -39,11 +39,7 @@ class DeviceController(
 
     @PostMapping("/devices/{deviceId}/measurements")
     fun createMeasurements(@PathVariable("deviceId") deviceId: UUID, @RequestBody rawMeasurement: DeviceMeasurementDto): ResponseEntity<Device> {
-        val dbDevice = deviceRepository.findById(deviceId)
-        if (dbDevice.isEmpty)  {
-            return ResponseEntity.status(404).body(null)
-        }
-        val device = dbDevice.get()
+        val device = deviceRepository.findByIdOrNull(deviceId) ?: return ResponseEntity.status(404).body(null)
         deviceMeasurementRepository.save(DeviceMeasurement(
                 rawMeasurement.longitude,
                 rawMeasurement.latitude,
@@ -56,11 +52,7 @@ class DeviceController(
 
     @GetMapping("/devices/{deviceId}/measurements")
     fun getMeasurements(@PathVariable("deviceId") deviceId: UUID): ResponseEntity<List<DeviceMeasurement>> {
-        val dbDevice = deviceRepository.findById(deviceId)
-        if (dbDevice.isEmpty)  {
-            return ResponseEntity.status(404).body(null)
-        }
-        val device = dbDevice.get()
+        val device = deviceRepository.findByIdOrNull(deviceId) ?: return ResponseEntity.status(404).body(null)
         return ResponseEntity.ok(device.measurements.toList())
     }
 

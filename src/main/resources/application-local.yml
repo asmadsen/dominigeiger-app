@@ -13,4 +13,6 @@ management:
   metrics:
     export:
       influx:
-        enabled: false
+        db: dominigeiger
+        uri: http://localhost:8086
+        enabled: true
