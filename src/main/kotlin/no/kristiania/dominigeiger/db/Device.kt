@@ -1,16 +1,21 @@
 package no.kristiania.dominigeiger.db
 
 import com.fasterxml.jackson.annotation.JsonManagedReference
+import org.springframework.data.annotation.CreatedDate
 import java.util.*
 import javax.persistence.*
 
 @Entity()
-class Device(
-        @get:JsonManagedReference
-        @get:OneToMany(mappedBy = "device", fetch = FetchType.LAZY)
-        var measurements: Set<DeviceMeasurement> = setOf(),
+data class Device(
+        @JsonManagedReference
+        @OneToMany(mappedBy = "device")
+        var measurements: List<DeviceMeasurement> = emptyList(),
 
-        @get:Id
-        @get:GeneratedValue
-        var id: UUID? = null
+        @Id
+        @GeneratedValue
+        var id: UUID? = null,
+
+        @Column(updatable = false)
+        @CreatedDate
+        var createdAt: Long? = null
 )

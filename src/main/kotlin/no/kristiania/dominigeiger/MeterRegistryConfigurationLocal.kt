@@ -1,13 +1,14 @@
-package no.kristiania.dominigeiger
-
 import io.micrometer.core.instrument.MeterRegistry
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Primary
+import org.springframework.context.annotation.Profile
 
 @Configuration
-class MicroMeterConfig {
+@Profile("default")
+class MeterRegistryConfigurationLocal{
 
-    @Bean()
-    fun getMeterRegistry(): MeterRegistry = SimpleMeterRegistry()
+    @Bean
+    fun meterRegistry(): MeterRegistry =  SimpleMeterRegistry()
 }

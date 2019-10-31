@@ -30,6 +30,7 @@ dependencies {
 
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("io.micrometer:micrometer-registry-influx:1.3.0")
+    implementation("io.logz.logback:logzio-logback-appender:1.0.23")
 }
 
 tasks.withType<KotlinCompile> {
