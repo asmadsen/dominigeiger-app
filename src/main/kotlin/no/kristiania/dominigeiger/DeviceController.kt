@@ -27,7 +27,7 @@ class DeviceController(
 
     private val logger = LoggerFactory.getLogger(DeviceController::class.java)
 
-    private val creationCounter = meterRegistry.counter("Meters created")
+    private val creationCounter = Counter.builder("counter.metersCreated").description("Meters created").register(meterRegistry)
     private val notFoundCounter = Counter.builder("counter.meterNotFound").description("Meter not found").register(meterRegistry)
     private val sievertDistributionSummary = DistributionSummary.builder("distibution.sievert")
             .description("Sievert Distribution")

@@ -8,7 +8,7 @@ import javax.persistence.*
 @Entity()
 data class Device(
         @JsonManagedReference
-        @OneToMany(mappedBy = "device")
+        @OneToMany(mappedBy = "device", fetch = FetchType.EAGER)
         var measurements: List<DeviceMeasurement> = emptyList(),
 
         @Id

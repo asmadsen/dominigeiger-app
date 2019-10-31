@@ -27,6 +27,7 @@ dependencies {
     implementation("io.springfox:springfox-swagger-ui:2.9.2")
     implementation("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("com.willowtreeapps.assertk:assertk-jvm:0.20")
 
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("io.micrometer:micrometer-registry-influx:1.3.0")
